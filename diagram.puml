@@ -1,0 +1,56 @@
+@startuml
+
+class User {
+    +int id
+    +String first_name
+    +String last_name
+    +String email
+    +String username
+    +String password
+    +Date registration_date
+    +User(String first_name, String last_name, String email, String username, String password, +Date registration_date) <<constructor>>
+    +create_user()
+    +update_user()
+    +delete_user()
+    +search_users()
+}
+
+class Book {
+    +int id
+    +String cover_photo
+    +String title
+    +String description
+    +int user_id
+    +int genre_id
+    +Book(+String cover_photo,String title, String description, Date publication_date, int user_id, int genre_id) <<constructor>>
+    +create_book()
+    +update_book()
+    +delete_book()
+    +query_books()
+}
+
+class Chapter {
+    +int id
+    +String title
+    +String content
+    +int book_id
+    +Chapter(String title, String content, int book_id) <<constructor>>
+    +create_chapter()
+    +update_chapter()
+    +delete_chapter()
+    +query_chapters()
+}
+
+class Genre {
+    +int id
+    +String name
+    +Genre(String name) <<constructor>>
+    +search_genres()
+    +select_genre()
+}
+
+User "1" -- "0..*" Book : writes
+Book "1" -- "0..*" Chapter : contains
+Genre "1" -- "0..*" Book : classifies
+
+@enduml

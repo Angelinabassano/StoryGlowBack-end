@@ -1,10 +1,12 @@
 from django.db import models
+from cloudinary.models import CloudinaryField
 
 
 class Book(models.Model):
     title = models.CharField(max_length=120)
     description = models.TextField()
-    cover_photo = models.ImageField(upload_to='book_covers/', blank=True, null=True)
+    cover_photo = CloudinaryField('image', folder='cover_photo', blank=True, null=True)
 
     def __str__(self):
-        return self.title
+        return f"{self.title}"
+
